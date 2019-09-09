@@ -1,0 +1,21 @@
+#duynv_toolbar{
+	position: fixed;
+	bottom: 20px;
+	left: 400px;
+	background: #fafafa;
+	/*! height: 60px; */
+	border-radius: 4px;
+	box-shadow: 3px 1px #fafafa;
+	border: 1px solid #ebebeb;
+	padding: 10px 5px;
+}
+
+.modal-dialog-fullscreen {
+  width: 98% !important;
+  height: 92% !important;
+  min-width: 98% !important;
+  min-height: 92% !important;
+  max-width: 98% !important;
+  max-height: 92% !important;
+  padding: 0 !important;
+}
