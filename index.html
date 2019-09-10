@@ -60,9 +60,8 @@ $(document).ready(function() {
 	    $('<label />', { for: 'suggest_list_'+i, text:'Add to Suggest Item'}).prependTo($(this).parent());
 	    $('<input />', { type: 'checkbox', name: 'suggest_list',id:'suggest_list_'+i, data_list:url+';'+title+';'+src+';'+auctionsID}).prependTo($(this).parent());
 	});	
-});
 
-$("input[name='suggest_list']").change(function(){
+	$("input[name='suggest_list']").change(function(){
     if ($(this).is(':checked')) {
         addItemToSuggestList($(this));
         getCheckedSuggestItem();
@@ -72,6 +71,9 @@ $("input[name='suggest_list']").change(function(){
     }
 
 })
+});
+
+
 
 function addItemToSuggestList(e){
     var html = '<td><a href="'+e.attr("data_list").split(";")[0]+'"><img src="'+e.attr("data_list").split(";")[2]+'" width="108" height="108"></a><a href="'+e.attr("data_list").split(";")[0]+'"><p>'+e.attr("data_list").split(";")[1]+'</p></a></td>';
