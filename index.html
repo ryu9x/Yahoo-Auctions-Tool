@@ -59,8 +59,9 @@ $(document).ready(function() {
 	    var auctionsID = $(this).find("a").attr("href").split('/').pop();
 	    $('<label />', { for: 'suggest_list_'+i, text:'Add to Suggest Item'}).prependTo($(this).parent());
 	    $('<input />', { type: 'checkbox', name: 'suggest_list',id:'suggest_list_'+i, data_list:url+';'+title+';'+src+';'+auctionsID}).prependTo($(this).parent());
+	});
+alert("A");
 
-	})
 	
 });
 
