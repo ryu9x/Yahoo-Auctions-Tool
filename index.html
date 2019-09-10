@@ -40,12 +40,6 @@
       
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <div class="tooltip">
-	        <button type="button" class="btn btn-primary" onclick="copyToClipboard('suggest_list_html','suggest-data-tooltip')" onmouseout="outCopyToClipboard('suggest-data-tooltip')">
-				<span class="tooltiptext" id="suggest-data-tooltip">Copy to clipboard</span>	
-	        	Copy Suggest List
-	    	</button>
-        </div>
       </div>
     </div>
   </div>
@@ -58,24 +52,17 @@
 	var $ = window.jQuery;
 
 $(document).ready(function() {
+	$("#list01").find(".bd.cf>.i").each(function(i){
+	    var url = $(this).find("a").attr("href");
+	    var title = $(this).find("img").attr("alt");
+	    var src = $(this).find("img").attr("src");
+	    var auctionsID = $(this).find("a").attr("href").split('/').pop();
+	    $('<label />', { for: 'suggest_list_'+i, text:'Add to Suggest Item'}).prependTo($(this).parent());
+	    $('<input />', { type: 'checkbox', name: 'suggest_list',id:'suggest_list_'+i, data_list:url+';'+title+';'+src+';'+auctionsID}).prependTo($(this).parent());
+
+	})
 	
 });
-
-function copyToClipboard(txtID,tooltipID) {
-  var copyText = document.getElementById(txtID);
-  copyText.select();
-  document.execCommand("copy");
-  
-  var tooltip = document.getElementById(tooltipID);
-  tooltip.innerHTML = "Copied";
-}
-
-function outCopyToClipboard(tooltipID) {
-  var tooltip = document.getElementById(tooltipID);
-  tooltip.innerHTML = "Copy to clipboard";
-}
-
-
 
 $("input[name='suggest_list']").change(function(){
     if ($(this).is(':checked')) {
