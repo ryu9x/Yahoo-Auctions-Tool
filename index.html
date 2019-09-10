@@ -30,8 +30,8 @@
 				<div class="tab-content" id="nav-tabContent">
 					<div class="tab-pane fade show active" id="nav-tab-1" role="tabpanel" aria-labelledby="nav-1">
 						<div class="form-group">
-			  				<label for="Suggest_list_html">HTML</label>	
-						    <textarea class="form-control" id="Suggest_list_html"></textarea>
+			  				<label for="suggest_list_html">HTML</label>	
+						    <textarea class="form-control" id="suggest_list_html"></textarea>
 			  			</div>
 			  		</div>
 				</div>
@@ -40,7 +40,12 @@
       
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">zzzz</button>
+        <div class="tooltip">
+	        <button type="button" class="btn btn-primary" onclick="copyToClipboard('suggest_list_html','suggest-data-tooltip')" onmouseout="outCopyToClipboard('suggest-data-tooltip')">
+				<span class="tooltiptext" id="suggest-data-tooltip">Copy to clipboard</span>	
+	        	Copy Suggest List
+	    	</button>
+        </div>
       </div>
     </div>
   </div>
@@ -49,19 +54,60 @@
 
 
 <script type="text/javascript">
-	var fetchJSONData = new Object();
+	var map = new Map();
 	var $ = window.jQuery;
 
 $(document).ready(function() {
-	init();
-	loadSummernote();
+	
 });
 
-
-function init() {
-	try{
-		$("#lisShippingForm").html($("#ship_name")[0].outerHTML);
-	}catch(err){}
+function copyToClipboard(txtID,tooltipID) {
+  var copyText = document.getElementById(txtID);
+  copyText.select();
+  document.execCommand("copy");
+  
+  var tooltip = document.getElementById(tooltipID);
+  tooltip.innerHTML = "Copied";
 }
+
+function outCopyToClipboard(tooltipID) {
+  var tooltip = document.getElementById(tooltipID);
+  tooltip.innerHTML = "Copy to clipboard";
+}
+
+
+
+$("input[name='suggest_list']").change(function(){
+    if ($(this).is(':checked')) {
+        addItemToSuggestList($(this));
+        getCheckedSuggestItem();
+    }else{
+        removeItemToSuggestList($(this));
+		getCheckedSuggestItem()
+    }
+
+})
+
+function addItemToSuggestList(e){
+    var html = '<td><a href="'+e.attr("data_list").split(";")[0]+'"><img src="'+e.attr("data_list").split(";")[2]+'" width="108" height="108"></a><a href="'+e.attr("data_list").split(";")[0]+'"><p>'+e.attr("data_list").split(";")[1]+'</p></a></td>';
+    map.set(e.attr("data_list").split(";")[3],html);
+}
+
+function removeItemToSuggestList(e){
+    map.delete(e.attr("data_list").split(";")[3])
+}
+
+function getCheckedSuggestItem(){
+	$("#suggest_list_html").val("");
+	var html ="";
+    for (const v of map.values()) {
+      html += v;
+    }
+    $("#suggest_list_html").val(html);
+}
+
+		
+
+
 </script>
 </div>
