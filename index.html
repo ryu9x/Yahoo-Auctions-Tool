@@ -34,6 +34,12 @@
 						    <textarea class="form-control" id="suggest_list_html"></textarea>
 			  			</div>
 			  		</div>
+			  		<div class="tab-pane fade show active" id="nav-tab-2" role="tabpanel" aria-labelledby="nav-1">
+						<div class="form-group">
+			  				<label for="suggest_list_html_temp"></label>	
+						    <textarea class="form-control" id="suggest_list_html_temp"></textarea>
+			  			</div>
+			  		</div>
 				</div>
 	  	</div>
 		 
@@ -52,6 +58,8 @@
 	var $ = window.jQuery;
 
 $(document).ready(function() {
+	init();
+
 	$("#list01").find(".bd.cf>.i").each(function(i){
 	    var url = $(this).find("a").attr("href");
 	    var title = $(this).find("img").attr("alt");
@@ -73,6 +81,11 @@ $(document).ready(function() {
 })
 });
 
+function init() {
+	try{
+		$("#suggest_list_html_temp").val('<table width="100%" cellspacing="0" cellpadding="10" border="0"> <tbody><tr>#suggest_list_body</tr> </tbody> </table>');
+	}catch(err){}
+}
 
 
 function addItemToSuggestList(e){
@@ -90,7 +103,7 @@ function getCheckedSuggestItem(){
     for (const v of map.values()) {
       html += v;
     }
-    $("#suggest_list_html").val(html);
+    $("#suggest_list_html").val($('#suggest_list_html_temp').val().replace("#suggest_list_body",html));
 }
 
 		
