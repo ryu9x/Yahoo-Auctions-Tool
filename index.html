@@ -91,7 +91,7 @@ function init() {
 
 
 function addItemToSuggestList(e){
-    var html = '<td style="display: inherit;"><a href="'+e.attr("data_list").split(";")[0]+'"><img src="'+e.attr("data_list").split(";")[2]+'" width="108" height="108"></a><a href="'+e.attr("data_list").split(";")[0]+'"><p style=" height: 32px; width: 108px; overflow: hidden; font-size: 12px; ">'+e.attr("data_list").split(";")[1]+'</p></a></td>';
+    var html = '<li display="float:left;"><a href="'+e.attr("data_list").split(";")[0]+'"><img src="'+e.attr("data_list").split(";")[2]+'" width="108" height="108"></a><a href="'+e.attr("data_list").split(";")[0]+'"><p style=" height: 32px; width: 108px; overflow: hidden; font-size: 12px; ">'+e.attr("data_list").split(";")[1]+'</p></a></li>';
     map.set(e.attr("data_list").split(";")[3],html);
 }
 
