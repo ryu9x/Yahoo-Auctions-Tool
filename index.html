@@ -61,7 +61,9 @@ $(document).ready(function() {
 	//init();
 
 	$("#list01").find(".bd.cf>.i").each(function(i){
-	    var url = $(this).find("a").attr("href");
+		var sku = $(this).find("img").attr("alt").match(/[@][\w]{6}/g)[0];
+	    //var url = $(this).find("a").attr("href");
+	    var url = "https://auctions.yahoo.co.jp/seller/marunaka556?p="+sku;
 	    var title = $(this).find("img").attr("alt");
 	    var src = $(this).find("img").attr("src");
 	    var auctionsID = $(this).find("a").attr("href").split('/').pop();
@@ -89,7 +91,7 @@ function init() {
 
 
 function addItemToSuggestList(e){
-    var html = '<td><a href="'+e.attr("data_list").split(";")[0]+'"><img src="'+e.attr("data_list").split(";")[2]+'" width="108" height="108"></a><a href="'+e.attr("data_list").split(";")[0]+'"><p>'+e.attr("data_list").split(";")[1]+'</p></a></td>';
+    var html = '<td style="display: inherit;"><a href="'+e.attr("data_list").split(";")[0]+'"><img src="'+e.attr("data_list").split(";")[2]+'" width="108" height="108"></a><a href="'+e.attr("data_list").split(";")[0]+'"><p style=" height: 32px; width: 108px; overflow: hidden; font-size: 12px; ">'+e.attr("data_list").split(";")[1]+'</p></a></td>';
     map.set(e.attr("data_list").split(";")[3],html);
 }
 
