@@ -64,7 +64,7 @@ $(document).ready(function() {
 		var sku = $(this).find("img").attr("alt").match(/[@][\w]{6}/g)[0];
 	    //var url = $(this).find("a").attr("href");
 	    var url = "https://auctions.yahoo.co.jp/seller/marunaka556?p="+sku;
-	    var title = $(this).find("img").attr("alt").substr(0,19);
+	    var title = $(this).find("img").attr("alt").substr(0,19).concat("...");
 	    var src = $(this).find("img").attr("src");
 	    var auctionsID = $(this).find("a").attr("href").split('/').pop();
 	    $('<label />', { for: 'suggest_list_'+i, text:'Add to Suggest Item'}).prependTo($(this).parent());
