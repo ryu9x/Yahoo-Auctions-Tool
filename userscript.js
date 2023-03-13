@@ -6,10 +6,10 @@ for (let i = 0, len = imgTags.length; i < len; i++) {
   const url = imgTags[i].getAttribute('src');
   const regex = /(\d{10})(?=\w*\.jpg)/;
   const match = url.match(regex);
-  const epoch = match ? match[1] : null;
+  var epoch = match ? match[1] : null;
     
   if (epoch) {
-      
+    const date = new Date(epoch*1000);
     const parent = imgTags[i].parentNode;
     const div = document.createElement('div');
     const imgWidth = imgTags[i].clientWidth;
@@ -19,9 +19,10 @@ for (let i = 0, len = imgTags.length; i < len; i++) {
     const fontSize = Math.round(imgSize / 10); // Calculate font size based on image size (adjust the division factor as needed)
 const maxFontSize = 12; // Set a maximum font size (adjust as needed)
 const minFontSize = 8; // Set a minimum font size (adjust as needed)
+const differenceInDays = Math.round((date-dateNow) / _MS_PER_DAY);
 
-
-    div.textContent = Math.round(epoch / _MS_PER_DAY) + " 日前";
+    div.textContent =  Math.abs(differenceInDays)+ " 日前";
+      console.log(div.textContent);
     div.style.position = 'absolute';
     div.style.top = 0;
     div.style.right = 0;
@@ -33,4 +34,3 @@ const minFontSize = 8; // Set a minimum font size (adjust as needed)
     parent.appendChild(div);
   }
 }
-//comment
